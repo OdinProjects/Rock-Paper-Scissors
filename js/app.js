@@ -1,12 +1,14 @@
 import {computerPlay} from './rpsGenerator.js'
 import {playOneRound} from './playOneRound.js'
 
+const game = (event) => {
+    alert(event.target.id);
+}
+
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        alert(button.id)
-    })
+    button.addEventListener('click', game)
 })
 
 /*
