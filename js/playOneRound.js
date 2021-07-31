@@ -1,37 +1,55 @@
-const playOneRound = (playerSelection, computerSelection) => {
-    playerSelection = playerSelection.toLowerCase()
-    computerSelection = computerSelection.toLowerCase()
+const playOneRound = (playerSelection, computerSelection, 
+    currentPlayerScore, currentOpponentScore) => {
+
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
+
+    let result;
 
     if(playerSelection === computerSelection) {
-        return "It's a Tie!"
+        result = "It's a Tie!";
     }
     
-    if(playerSelection === "rock") {
+    else if(playerSelection === "rock") {
         switch(computerSelection) {
             case "scissors":
-                return "You Win! (You) Rock beats Scissors (Opponent)"
+                currentPlayerScore += 1;
+                result = "You Win! (You) Rock beats Scissors (Opponent)";
+                break;
             case "paper": 
-                return "You Lose! (Opponent) Paper beats Rock (You)"
+                currentOpponentScore += 1;
+                result = "You Lose! (Opponent) Paper beats Rock (You)";
+                break;
         }
     }
 
-    if(playerSelection === "paper") {
+    else if(playerSelection === "paper") {
         switch(computerSelection) {
             case "scissors":
-                return "You Lose! (Opponent) Scissors beat Paper (You)"
+                currentOpponentScore += 1;
+                result = "You Lose! (Opponent) Scissors beat Paper (You)";
+                break;
             case "rock": 
-                return "You Win! (You) Paper beats Rock (Opponent)"
+                currentPlayerScore += 1;
+                result = "You Win! (You) Paper beats Rock (Opponent)";
+                break;
         }
     }
 
-    if(playerSelection === "scissors") {
+    else if(playerSelection === "scissors") {
         switch(computerSelection) {
             case "rock":
-                return "You Lose! (Opponent) Rock beats Scissor (You)"
+                currentOpponentScore += 1;
+                result = "You Lose! (Opponent) Rock beats Scissor (You)";
+                break;
             case "paper": 
-                return "You Win! (You) Scissors beat Paper (Opponent)"
+                currentPlayerScore += 1;
+                result = "You Win! (You) Scissors beat Paper (Opponent)";
+                break;
         }
     }
+
+    return [result, currentPlayerScore, currentOpponentScore]
 }
 
 export {playOneRound}
